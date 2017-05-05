@@ -9,8 +9,6 @@ public class Player : MonoBehaviour
     public float MaxRPM = 100;
     public float MaxSteerAngle = 40;
     public float MaxTorque;
-    public float MaxSpeed;
-    public float Grip;
     public Transform CoM;
     private float _steerAngle;
     public Text SpeedText;
@@ -44,7 +42,7 @@ public class Player : MonoBehaviour
 	        else if (Input.GetAxis("Vertical") < 0 && tire.GetComponent<WheelCollider>().rpm >= 0)
 	        {
 	            tire.GetComponent<WheelCollider>().motorTorque =
-	                ((MaxRPM - -tire.GetComponent<WheelCollider>().rpm) / MaxRPM) * Input.GetAxis("Vertical") * MaxTorque;
+	                ((MaxRPM + tire.GetComponent<WheelCollider>().rpm) / MaxRPM) * Input.GetAxis("Vertical") * MaxTorque;
 	        }
 	        if (tire.Steerable)
 	        {
